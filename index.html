@@ -7,5 +7,20 @@
 </head>
 <body>
     <h1>Hello World!</h1>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // JSON 파일 로드
+            fetch("data.json")
+                .then(response => response.json())
+                .then(data => {
+                    // JSON 데이터 표시
+                    const jsonData = JSON.stringify(data, null, 2);
+                    document.getElementById("json-data").textContent = jsonData;
+                })
+                .catch(error => {
+                    console.error("Error loading JSON data:", error);
+                });
+        });
+    </script>
 </body>
 </html>
