@@ -14,10 +14,15 @@
             fetch("data.json")
                 .then(response => response.json())
                 .then(data => {
-                    // JSON 데이터 표시
                     const jsonData = JSON.stringify(data, null, 2);
-                    console.log(jsonData);
-                    document.getElementById("json-data").textContent = jsonData;
+                    const json_parse = JSON.parse(jsonData);
+                    console.log(json_parse.response);
+                    // console.log(json_parse.response.body.items.item[0]);
+
+                    // JSON 데이터 표시
+                    // const jsonData = JSON.stringify(data, null, 2);
+                    // console.log(jsonData);
+                    document.getElementById("json-data").textContent = json_parse.response.body.items.item[0].fcstValue;
                 })
                 .catch(error => {
                     console.error("Error loading JSON data:", error);
