@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Read JSON with JavaScript</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <pre id="json-data"></pre>
+    <h1>JSON Data</h1>
+    <div id="json-data"></div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // JSON 파일 로드
-            fetch("HTML_PAGES_TEST/docs/data.json")
+        // JSON 파일의 경로
+        const jsonFilePath = "HTML_PAGES_TEST/docs/data.json";
+
+        // JSON 데이터를 가져오는 함수
+        function fetchJSONFile(filePath, callback) {
+            fetch(filePath)
                 .then(response => response.json())
                 .then(data => {
-                    const jsonData = JSON.stringify(data, null, 2);
-                    const json_parse = JSON.parse(jsonData);
-                    console.log(json_parse.response);
-                    // console.log(json_parse.response.body.items.item[0]);
-
-                    // JSON 데이터 표시
-                    // const jsonData = JSON.stringify(data, null, 2);
-                    // console.log(jsonData);
-                    document.getElementById("json-data").textContent = json_parse.response.body.items.item[0].fcstValue;
+                    callback(data);
                 })
                 .catch(error => {
                     console.error("Error loading JSON data:", error);
                 });
+        }
+
+        // JSON 파일 가져와서 화면에 출력
+        fetchJSONFile(jsonFilePath, function(data) {
+            const jsonData = JSON.stringify(data, null, 2);
+            document.getElementById("json-data").textContent = jsonData;
+            // const json_parse = JSON.parse(jsonData);
+            // console.log(json_parse.response);
+            // console.log(json_parse.response.body.items.item[0]);
         });
     </script>
 </body>
