@@ -21,7 +21,6 @@ jobs:
       - name: Update Log
         run: |
           # 현재 날짜와 시간을 생성
-          # utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
           timestamp=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
           
           # 디렉토리 생성 또는 이미 존재하면 스킵
