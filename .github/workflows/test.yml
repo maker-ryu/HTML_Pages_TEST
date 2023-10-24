@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Update Log 1
+      - name: Update Log
         run: |
           # 현재 날짜와 시간을 생성
           utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
@@ -28,7 +28,7 @@ jobs:
           mkdir -p HTML_Pages_TEST/docs
 
           # JSON 파일 업데이트 로그 작성 (예: log.json 파일에 추가)
-          echo "{\"timestamp\":\"$timestamp\"}" >> HTML_Pages_TEST/docs/update_log.json
+          echo "{\"timestamp\":\"$timestamp\"}" > HTML_Pages_TEST/docs/update_log.json
 
           # 변경된 내용을 출력
           cat HTML_Pages_TEST/docs/update_log.json
