@@ -1,0 +1,34 @@
+name: Update Log
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Update Log
+        run: |
+          # 현재 날짜와 시간을 생성
+          utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
+          timestamp=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
+          
+          # 디렉토리 생성 또는 이미 존재하면 스킵
+          mkdir -p Weather_Checker/docs
+
+          # JSON 파일 업데이트 로그 작성 (예: log.json 파일에 추가)
+          echo "{\"timestamp\":\"$timestamp\",\"message\":\"This is a log entry.\"}" >> Weather_Checker/docs/update_log.json
+
+          # 변경된 내용을 출력
+          cat Weather_Checker/docs/update_log.json
